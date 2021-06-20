@@ -1,0 +1,19 @@
+login as: root
+Last login: Tue Jun  8 09:41:52 2021 from 172.30.19.132
+[root@localhost ~]# psql -h localhost postgres postgres
+psql (9.6.11)
+Type "help" for help.
+
+postgres=# UPDATE pg_database SET datallowconn = 'false' WHERE datname = 'LDB_13102020';
+UPDATE 1
+postgres=#  SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = 'LDB_13102020';
+ pg_terminate_backend
+----------------------
+ t
+ t
+ t
+ t
+(4 rows)
+
+postgres=# DROP DATABASE LDB_13102020;
+
